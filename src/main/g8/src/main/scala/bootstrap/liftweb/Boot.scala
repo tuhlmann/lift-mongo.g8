@@ -1,4 +1,4 @@
-package $package$
+package bootstrap.liftweb
 
 import net.liftweb._
 import util._
@@ -8,7 +8,6 @@ import common._
 import http._
 import sitemap._
 import Loc._
-import mongodb._
 
 import $package$.model._
 
