@@ -1,11 +1,14 @@
-package $package$ {
-package snippet {
+package $package$
+package snippet
 
-import _root_.scala.xml.{NodeSeq, Text}
-import _root_.net.liftweb.util._
-import _root_.net.liftweb.common._
-import _root_.java.util.Date
 import $package$.lib._
+
+import java.util.Date
+import scala.xml.{NodeSeq, Text}
+
+import net.liftweb._
+import common._
+import util._
 import Helpers._
 
 class HelloWorld {
@@ -19,7 +22,4 @@ class HelloWorld {
 
    def howdy = "#time *" #> date.toString
    */
-}
-
-}
 }
