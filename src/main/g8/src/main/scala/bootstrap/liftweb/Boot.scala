@@ -24,8 +24,9 @@ class Boot {
 
     // where to search snippet
     LiftRules.addToPackages("$package$")
-
-    //LiftRules.autoIncludeAjax = session => false
+    
+    // set the default htmlProperties
+    LiftRules.htmlProperties.default.set((r: Req) => new Html5Properties(r.userAgent))
 
     // Build SiteMap
     val entries = List(
