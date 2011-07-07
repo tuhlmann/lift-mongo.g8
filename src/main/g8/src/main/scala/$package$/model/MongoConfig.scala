@@ -9,23 +9,23 @@ import util.Props
 import com.mongodb.Mongo
 
 object AdminDB extends MongoIdentifier {
-	val jndiName = "admin"
+  val jndiName = "admin"
 }
 
 object MongoConfig extends Loggable {
   def init() {
     val mainMongoHost = new Mongo(Props.get("mongo.host", "localhost"), Props.getInt("mongo.port", 27017))
-		MongoDB.defineDb(
-		  DefaultMongoIdentifier,
-		  mainMongoHost,
-		  Props.get("mongo.main_name", "$name$")
-		)
-		MongoDB.defineDb(
-		  AdminDB,
-		  mainMongoHost,
-		  Props.get("mongo.admin_name", "admin")
-		)
-		logger.info("MongoDB inited")
+    MongoDB.defineDb(
+      DefaultMongoIdentifier,
+      mainMongoHost,
+      Props.get("mongo.main_name", "$name$")
+    )
+    MongoDB.defineDb(
+      AdminDB,
+      mainMongoHost,
+      Props.get("mongo.admin_name", "admin")
+    )
+    logger.info("MongoDB inited")
   }
 
   override def finalize() {

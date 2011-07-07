@@ -1,9 +1,8 @@
 package $package$
 package snippet
 
-import org.specs._
-import matcher._
-import specification._
+import org.specs.Specification
+import org.specs.specification.Examples
 
 import net.liftweb._
 import common._
@@ -32,7 +31,7 @@ object HelloWorldSpec extends Specification {
       val str = hello.render(<span>Welcome to your Lift app at <span id="time">Time goes here</span></span>).toString
 
       str.indexOf(stableTime.toString) must be >= 0
-      str.indexOf("Hello at") must be >= 0
+      str.indexOf("Welcome to your Lift app at") must be >= 0
     }
   }
 }
