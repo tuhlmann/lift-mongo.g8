@@ -10,7 +10,6 @@ import util.Helpers._
 
 import $package$.model._
 
-
 /**
  * A class that's instantiated early and run.  It allows the application
  * to modify lift's environment
@@ -29,13 +28,7 @@ class Boot extends Loggable {
     LiftRules.htmlProperties.default.set((r: Req) => new Html5Properties(r.userAgent))
 
     // Build SiteMap
-    val entries = List(
-      Menu.i("Home") / "index", // the simple way to declare a menu
-
-      // more complex because this menu allows anything in the
-      // /static path to be visible
-      Menu(Loc("Static", Link(List("static"), true, "/static/index"), "Static Content")))
-    // the User management menu items
+    val entries = List(Menu.i("Home") / "index")
 
     // set the sitemap.  Note if you don't want access control for
     // each page, just comment this line out.
