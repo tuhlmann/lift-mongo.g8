@@ -1,8 +1,8 @@
 import sbt._
 
-import untyped.ClosureCompilerPlugin
+import untyped.{ClosureCompilerPlugin, LessCssPlugin}
 
-class LiftProject(info: ProjectInfo) extends DefaultWebProject(info) with ClosureCompilerPlugin {
+class LiftProject(info: ProjectInfo) extends DefaultWebProject(info) with ClosureCompilerPlugin with LessCssPlugin {
   lazy val isAutoScan = systemOptional[Boolean]("autoscan", false).value
   val liftVersion = "$lift_version$"
 
@@ -26,6 +26,9 @@ class LiftProject(info: ProjectInfo) extends DefaultWebProject(info) with Closur
 	
 	// google-closure plugin
 	override def closureSourcePath: Path = "src" / "main" / "javascript"
+	
+	// less.css plugin
+	override def lessSourcePath: Path = "src" / "main" / "less"
 	
 	// Initialize Boot by default
   override def consoleInit =
