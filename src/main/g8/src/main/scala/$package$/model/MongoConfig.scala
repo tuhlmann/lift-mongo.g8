@@ -7,7 +7,7 @@ import json._
 import mongodb._
 import util.Props
 
-import com.mongodb.Mongo
+import com.mongodb.{DBAddress, Mongo}
 
 object MongoConfig extends Loggable {
   implicit val formats = DefaultFormats

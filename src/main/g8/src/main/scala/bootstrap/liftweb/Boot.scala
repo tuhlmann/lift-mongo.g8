@@ -26,7 +26,7 @@ class Boot extends Loggable {
     // init auth-mongo
     AuthRules.authUserMeta.default.set(User)
     AuthRules.afterloginTokenUrl.default.set(Sitemap.password.path)
-    AuthRules.siteName.default.set($name$)
+    AuthRules.siteName.default.set("$name$")
     AuthRules.systemEmail.default.set("info@$domain$")
     AuthRules.systemUsername.default.set("$name$ Staff")
 

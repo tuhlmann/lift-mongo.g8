@@ -30,6 +30,7 @@ object Sitemap {
   import MenuGroups._
 
   // locations (menu entries)
+  val home = MenuLoc(Menu.i("Home") / "index" >> TopBarGroup)
   val loginToken = MenuLoc(buildLoginTokenMenu)
   val logout = MenuLoc(buildLogoutMenu)
   private val profileParamMenu = Menu.param[User]("User", "Profile",
@@ -45,7 +46,6 @@ object Sitemap {
   val register = MenuLoc(Menu.i("Register") / "register" >> RequireNotLoggedIn)
 
   private def menus = List(
-    Menu.i("Beta") / "index",
     home.menu,
     Menu.i("Login") / "login" >> RequireNotLoggedIn,
     register.menu,
