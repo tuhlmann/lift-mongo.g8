@@ -60,7 +60,7 @@ object MongoConfig extends Loggable {
           .openOr(new DBAddress(
             Props.get("mongo.default.host", "localhost"),
             Props.getInt("mongo.default.port", 27017),
-            Props.get("mongo.default.name", "beamstream")
+            Props.get("mongo.default.name", "$name$")
           ))
 
         /*

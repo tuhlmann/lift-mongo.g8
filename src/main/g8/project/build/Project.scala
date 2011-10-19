@@ -4,13 +4,10 @@ import untyped.{ClosureCompilerPlugin, LessCssPlugin}
 
 class LiftProject(info: ProjectInfo) extends DefaultWebProject(info) with ClosureCompilerPlugin with LessCssPlugin {
   lazy val isAutoScan = systemOptional[Boolean]("autoscan", false).value
-  val liftVersion = "$lift_version$"
+  val liftVersion = "$lift-version$"
 
-  val scalatestVersion = buildScalaVersion match {
-    case "2.8.0" => "1.3"
-    case "2.8.1" | "2.8.2" => "1.5.1"
-    case _       => "1.6.1"
-  }
+  lazy val scalatestVersion = Map("2.8.0" -> "1.3", "2.8.1" -> "1.5.1", "2.8.2" -> "1.5.1").getOrElse(buildScalaVersion, "1.6.1")
+  lazy val specsVersion = Map("2.8.0" -> "1.6.5", "2.9.1" -> "1.6.9").getOrElse(buildScalaVersion, "1.6.8")
 
   // uncomment the following if you want to use the snapshot repo
   //val scalatoolsSnapshot = ScalaToolsSnapshots
@@ -27,6 +24,7 @@ class LiftProject(info: ProjectInfo) extends DefaultWebProject(info) with Closur
 
   // test-scope
 	lazy val scalatest = "org.scalatest" %% "scalatest" % scalatestVersion % "test"
+  lazy val specs = "org.scala-tools.testing" %% "specs" % specsVersion % "test->default"
 	lazy val jetty6 = "org.mortbay.jetty" % "jetty" % "6.1.22" % "test"
 
   // provided-scope
