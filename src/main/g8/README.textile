@@ -4,9 +4,10 @@ h2. Twitter Bootstrap
 Bootstrap is included via a git submodule. When first checking out this project
 you must run:
 
-notextile. <!--@git submodule add https://github.com/twitter/bootstrap.git modules/bootstrap@-->
-
+@git init@
+@git submodule add https://github.com/twitter/bootstrap.git modules/bootstrap@
 @git submodule init@
+@git add modules/bootstrap@
 
 This will pull in the necessary files.
 
@@ -18,3 +19,7 @@ more information, see:
 
 Also, the sbt-closure plugin does not allow file locations to start with @.@. So you must create a
 symlink for it. It expects src/main/javascript/js/boostrap to be the root of the twitter/boostrap repository.
+
+From src/main/javascript/js/ directory:
+
+@ln -s ../../../../modules/bootstrap bootstrap@

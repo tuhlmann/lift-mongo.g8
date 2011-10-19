@@ -6,7 +6,7 @@ class LiftProject(info: ProjectInfo) extends DefaultWebProject(info) with Closur
   lazy val isAutoScan = systemOptional[Boolean]("autoscan", false).value
   val liftVersion = "$lift_version$"
 
-  val scalatestVersion = scalaVersion match {
+  val scalatestVersion = buildScalaVersion match {
     case "2.8.0" => "1.3"
     case "2.8.1" | "2.8.2" => "1.5.1"
     case _       => "1.6.1"
