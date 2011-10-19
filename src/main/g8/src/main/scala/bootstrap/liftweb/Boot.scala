@@ -3,10 +3,14 @@ package bootstrap.liftweb
 import net.liftweb._
 import common._
 import http._
-import sitemap._
-import sitemap.Loc._
 import util._
 import util.Helpers._
+
+import $package$.lib.{ErrorHandler, Gravatar, SmtpMailer}
+import $package$.locs.Sitemap
+import $package$.model.{MongoConfig, User}
+
+import com.eltimn.auth.mongo._
 
 /**
  * A class that's instantiated early and run.  It allows the application
@@ -19,19 +23,39 @@ class Boot extends Loggable {
     // init mongodb
     MongoConfig.init()
 
+    // init auth-mongo
+    AuthRules.authUserMeta.default.set(User)
+    AuthRules.afterloginTokenUrl.default.set(Sitemap.password.path)
+    AuthRules.siteName.default.set($name$)
+    AuthRules.systemEmail.default.set("info@$domain$")
+    AuthRules.systemUsername.default.set("$name$ Staff")
+
+    // checks for ExtSession cookie
+    LiftRules.earlyInStateful.append(User.testForExtSession)
+
+    // Gravatar
+    Gravatar.defaultImage.default.set("wavatar")
+
+    // config an email sender
+    SmtpMailer.init
+
     // where to search snippet
     LiftRules.addToPackages("$package$")
-    
+
     // set the default htmlProperties
     LiftRules.htmlProperties.default.set((r: Req) => new Html5Properties(r.userAgent))
 
     // Build SiteMap
-    val TopbarGroup = LocGroup("topbar")
-    LiftRules.setSiteMap(SiteMap(List(
-      Menu.i("Home") / "index",
-      Menu.i("About") / "about" >> TopbarGroup,
-      Menu.i("Contact") / "contact" >> TopbarGroup
-    ) :_*))
+    LiftRules.setSiteMap(Sitemap.siteMap)
+
+    // Error handler
+    ErrorHandler.init
+
+    // 404 handler
+    LiftRules.uriNotFound.prepend(NamedPF("404handler") {
+      case (req, failure) =>
+        NotFoundAsTemplate(ParsePath(List("404"), "html", false, false))
+    })
 
     //Show the spinny image when an Ajax call starts
     LiftRules.ajaxStart =

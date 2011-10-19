@@ -1,6 +1,4 @@
 Lift MongoDB app template for giter8
 
 Todo:
-- Include js files. (add feature to giter8 to allow for a Path to ignore and just copy the contents)
-- Add User code
 - Add tests
