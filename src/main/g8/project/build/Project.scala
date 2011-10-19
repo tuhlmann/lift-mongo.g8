@@ -4,7 +4,7 @@ import untyped.{ClosureCompilerPlugin, LessCssPlugin}
 
 class LiftProject(info: ProjectInfo) extends DefaultWebProject(info) with ClosureCompilerPlugin with LessCssPlugin {
   lazy val isAutoScan = systemOptional[Boolean]("autoscan", false).value
-  val liftVersion = "$lift-version$"
+  val liftVersion = "$lift_version$"
 
   lazy val scalatestVersion = Map("2.8.0" -> "1.3", "2.8.1" -> "1.5.1", "2.8.2" -> "1.5.1").getOrElse(buildScalaVersion, "1.6.1")
   lazy val specsVersion = Map("2.8.0" -> "1.6.5", "2.9.1" -> "1.6.9").getOrElse(buildScalaVersion, "1.6.8")
