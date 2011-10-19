@@ -8,7 +8,7 @@
       monitorPassword: function() {
         var self = this;
         if (!\$("#yes_password").attr("checked")) {
-          var pwd = $("#id_password").val();
+          var pwd = \$("#id_password").val();
           if (pwd.length > 0) {
             \$("#yes_password").attr("checked", "checked");
           }
