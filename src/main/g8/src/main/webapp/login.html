@@ -7,10 +7,10 @@
       timeoutRtn: 0,
       monitorPassword: function() {
         var self = this;
-        if (!$('#yes_password').attr("checked")) {
-          var pwd = $('#id_password').val();
+        if (!$("#yes_password").attr("checked")) {
+          var pwd = $("#id_password").val();
           if (pwd.length > 0) {
-            $('#yes_password').attr("checked", "checked");
+            $("#yes_password").attr("checked", "checked");
           }
           else {
             self.startMonitor();
@@ -24,8 +24,8 @@
     }
     $(document).ready(function() {
       Signin.startMonitor();
-      $('#id_password').keypress(function() {
-        $('#yes_password').attr("checked", "checked");
+      $("#id_password").keypress(function() {
+        $("#yes_password").attr("checked", "checked");
       });
     });
     /* ]]> */
