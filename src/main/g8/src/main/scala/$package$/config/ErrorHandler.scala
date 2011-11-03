@@ -1,5 +1,5 @@
 package $package$
-package lib
+package config
 
 import model.User
 

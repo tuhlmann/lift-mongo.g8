@@ -1,7 +1,7 @@
 package $package$
 package model
 
-import locs.Sitemap
+import config.Sitemap
 
 import org.bson.types.ObjectId
 import org.joda.time.DateTime
@@ -13,7 +13,9 @@ import mongodb.record.field._
 import record.field._
 import util.FieldContainer
 
-import com.eltimn.auth.mongo._
+import net.liftmodules.mongoauth._
+import net.liftmodules.mongoauth.field._
+import net.liftmodules.mongoauth.model._
 
 class User private () extends ProtoAuthUser[User] with ObjectIdPk[User] {
   def meta = User
@@ -95,12 +97,12 @@ object User extends User with ProtoAuthUserMeta[User] with Loggable {
   )
 
   /*
-   * AuthRules vars
+   * MongoAuth vars
    */
-  private lazy val siteName = AuthRules.siteName.vend
-  private lazy val sysUsername = AuthRules.systemUsername.vend
-  private lazy val indexUrl = AuthRules.indexUrl.vend
-  private lazy val afterloginTokenUrl = AuthRules.afterloginTokenUrl.vend
+  private lazy val siteName = MongoAuth.siteName.vend
+  private lazy val sysUsername = MongoAuth.systemUsername.vend
+  private lazy val indexUrl = MongoAuth.indexUrl.vend
+  private lazy val loginTokenAfterUrl = MongoAuth.loginTokenAfterUrl.vend
 
   /*
    * LoginToken
@@ -120,7 +122,7 @@ object User extends User with ProtoAuthUserMeta[User] with Loggable {
         at.delete_!
       }
       case Full(at) => logUserInFromToken(at.userId.is) match {
-        case Full(_) => respUrl = afterloginTokenUrl.toString
+        case Full(_) => respUrl = loginTokenAfterUrl.toString
         case _ => S.error("User not found")
       }
       case _ => S.warning("Login token not provided")
@@ -150,7 +152,7 @@ object User extends User with ProtoAuthUserMeta[User] with Loggable {
       """.format(siteName, token.url, sysUsername).stripMargin
 
     sendMail(
-      From(AuthRules.systemFancyEmail),
+      From(MongoAuth.systemFancyEmail),
       Subject("%s Password Help".format(siteName)),
       To(user.fancyEmail),
       PlainMailBodyType(msgTxt)

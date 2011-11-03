@@ -1,5 +1,5 @@
 package $package$
-package lib
+package config
 
 import javax.mail.{Authenticator, PasswordAuthentication}
 import javax.mail.internet.MimeMessage

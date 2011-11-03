@@ -1,5 +1,5 @@
 package $package$
-package locs
+package config
 
 import model.User
 
@@ -9,8 +9,7 @@ import http.S
 import sitemap._
 import sitemap.Loc._
 
-import com.eltimn.auth.mongo.{Locs, Path}
-import Locs._
+import net.liftmodules.mongoauth.Locs
 
 object MenuGroups {
   val SettingsGroup = LocGroup("settings")
@@ -21,8 +20,7 @@ object MenuGroups {
  * Wrapper for Menu locations
  */
 case class MenuLoc(menu: Menu) {
-  lazy val path: Path = Path(menu.loc.link.uriList)
-  lazy val url: String = path.toString
+  lazy val url: String = menu.loc.link.uriList.mkString("/","/","")
   lazy val fullUrl: String = S.hostAndPath+url
 }
 

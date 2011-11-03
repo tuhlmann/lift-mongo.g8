@@ -1,8 +1,8 @@
 package $package$
 package snippet
 
-import lib.{Gravatar, SnippetHelpers}
-import locs.Sitemap
+import config.Sitemap
+import lib.{Gravatar, AppHelpers}
 import model.{User, LoginCredentials}
 
 import scala.xml._
@@ -13,7 +13,7 @@ import http.{DispatchSnippet, S, SHtml, StatefulSnippet}
 import util._
 import Helpers._
 
-sealed trait UserSnippet extends DispatchSnippet with SnippetHelpers with Loggable {
+sealed trait UserSnippet extends DispatchSnippet with AppHelpers with Loggable {
 
   def dispatch = {
     case "header" => header
@@ -177,7 +177,7 @@ object UserTopbar {
               <li><lift:Menu.item name="Account" donthide="true" linktoself="true">Settings</lift:Menu.item></li>
               <li><lift:Menu.item name="About" donthide="true" linktoself="true">Help</lift:Menu.item></li>
               <li class="divider"></li>
-              <li><a href="/logout">Log Out</a></li>
+              <li><lift:Menu.item name="Logout" donthide="true" linktoself="true">Log Out</lift:Menu.item></li>
             </ul>
           </li>
         </ul>

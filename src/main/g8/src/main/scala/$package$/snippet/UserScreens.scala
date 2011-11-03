@@ -1,8 +1,8 @@
 package $package$
 package snippet
 
+import config.Sitemap
 import lib.Gravatar
-import locs.Sitemap
 import model._
 
 import scala.xml._

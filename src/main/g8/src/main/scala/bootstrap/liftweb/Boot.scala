@@ -6,11 +6,11 @@ import http._
 import util._
 import util.Helpers._
 
-import $package$.lib.{ErrorHandler, Gravatar, SmtpMailer}
-import $package$.locs.Sitemap
-import $package$.model.{MongoConfig, User}
+import $package$.config._
+import $package$.lib.Gravatar
+import $package$.model.User
 
-import com.eltimn.auth.mongo._
+import net.liftmodules.mongoauth.MongoAuth
 
 /**
  * A class that's instantiated early and run.  It allows the application
@@ -24,11 +24,11 @@ class Boot extends Loggable {
     MongoConfig.init()
 
     // init auth-mongo
-    AuthRules.authUserMeta.default.set(User)
-    AuthRules.afterloginTokenUrl.default.set(Sitemap.password.path)
-    AuthRules.siteName.default.set("$name$")
-    AuthRules.systemEmail.default.set("info@$domain$")
-    AuthRules.systemUsername.default.set("$name$ Staff")
+    MongoAuth.authUserMeta.default.set(User)
+    MongoAuth.loginTokenAfterUrl.default.set(Sitemap.password.path)
+    MongoAuth.siteName.default.set("$name$")
+    MongoAuth.systemEmail.default.set("info@") // TODO: Set me
+    MongoAuth.systemUsername.default.set("$name$ Staff")
 
     // checks for ExtSession cookie
     LiftRules.earlyInStateful.append(User.testForExtSession)

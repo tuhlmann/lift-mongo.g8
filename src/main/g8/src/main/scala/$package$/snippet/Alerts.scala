@@ -8,7 +8,6 @@ import common._
 import http.{Factory, NoticeType, S, SHtml}
 import util.Helpers._
 
-
 object BootstrapAlerts extends Factory with Loggable {
   /*
    * Config
