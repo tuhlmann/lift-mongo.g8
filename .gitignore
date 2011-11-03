@@ -5,10 +5,6 @@ Thumbs.db
 
 # sbt
 target/
-lib_managed/
-project/boot/
-project/plugins/project/
-project/plugins/src_managed/
 
 # sublime-text
 *.sublime-*

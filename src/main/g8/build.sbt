@@ -12,10 +12,9 @@ resolvers += "Liftmodules repo" at "https://repository-liftmodules.forge.cloudbe
 
 {
   val liftVersion = "$lift_version$"
-
   libraryDependencies ++= Seq(
     "net.liftweb" %% "lift-mongodb-record" % liftVersion,
-    "net.liftmodules" %% "mongoauth" % liftVersion+"-0.1",
+    "net.liftmodules" %% "mongoauth" % (liftVersion+"-0.1"),
     "ch.qos.logback" % "logback-classic" % "1.0.0",
     "org.scalatest" %% "scalatest" % "1.6.1" % "test",
     "org.mortbay.jetty" % "jetty" % "6.1.22" % "container"
