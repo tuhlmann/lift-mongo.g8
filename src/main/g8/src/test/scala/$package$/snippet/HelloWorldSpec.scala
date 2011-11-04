@@ -1,24 +1,25 @@
 package $package$
 package snippet
 
-import org.specs.Specification
-import org.specs.specification.Examples
+import lib.DependencyFactory
+
+import org.scalatest.WordSpec
+import org.scalatest.matchers.ShouldMatchers
 
 import net.liftweb._
 import common._
 import http._
 import util._
 import Helpers._
-import lib._
 
-object HelloWorldSpec extends Specification {
+class HelloWorldSpec extends WordSpec with ShouldMatchers {
   val session = new LiftSession("", randomString(20), Empty)
   val stableTime = now
 
-  override def executeExpectations(ex: Examples, t: => Any): Any = {
+  override def withFixture(test: NoArgTest) {
     S.initIfUninitted(session) {
       DependencyFactory.time.doWith(stableTime) {
-        super.executeExpectations(ex, t)
+        test()
       }
     }
   }
@@ -30,9 +31,8 @@ object HelloWorldSpec extends Specification {
 
       val str = hello.render(<span>Welcome to your Lift app at <span id="time">Time goes here</span></span>).toString
 
-      str.indexOf(stableTime.toString) must be >= 0
-      str.indexOf("Welcome to your Lift app at") must be >= 0
+      str.indexOf(stableTime.toString) should be >= 0
+      str.indexOf("Welcome to your Lift app at") should be >= 0
     }
   }
 }
-

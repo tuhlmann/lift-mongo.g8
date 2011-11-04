@@ -25,7 +25,7 @@ class Boot extends Loggable {
 
     // init auth-mongo
     MongoAuth.authUserMeta.default.set(User)
-    MongoAuth.loginTokenAfterUrl.default.set(Sitemap.password.path)
+    MongoAuth.loginTokenAfterUrl.default.set(Sitemap.password.url)
     MongoAuth.siteName.default.set("$name$")
     MongoAuth.systemEmail.default.set("info@") // TODO: Set me
     MongoAuth.systemUsername.default.set("$name$ Staff")

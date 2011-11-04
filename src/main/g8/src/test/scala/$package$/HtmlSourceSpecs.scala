@@ -4,21 +4,23 @@ import java.io.File
 
 import scala.xml.XML
 
-import org.specs.Specification
+import org.scalatest.WordSpec
+import org.scalatest.matchers.ShouldMatchers
 
 import net.liftweb.common.Full
 import net.liftweb.util.Html5
 
-object HtmlSourceSpec extends Specification {
+object HtmlSourceSpec extends WordSpec with ShouldMatchers {
 
   "HTML Sources" should {
+
     "be well-formed" in {
       /**
-      * Tests to make sure the project's HTML files are well-formed.
-      *
-      * Finds every *.html and *.xml file in src/main/webapp (and its
-      * subdirectories) and tests to make sure they are well-formed.
-      */
+        * Tests to make sure the project's HTML files are well-formed.
+        *
+        * Finds every *.html and *.xml file in src/main/webapp (and its
+        * subdirectories) and tests to make sure they are well-formed.
+        */
       var failed: List[File] = Nil
       
       def handledXml(file: String) = file.endsWith(".xml")
@@ -54,7 +56,7 @@ object HtmlSourceSpec extends Specification {
         fail(msg)
       }
       
-      numFails must_== 0
+      numFails should equal (0)
     }
   }
 }

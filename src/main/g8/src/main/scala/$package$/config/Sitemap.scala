@@ -24,7 +24,7 @@ case class MenuLoc(menu: Menu) {
   lazy val fullUrl: String = S.hostAndPath+url
 }
 
-object Sitemap {
+object Sitemap extends Locs {
   import MenuGroups._
 
   // locations (menu entries)
