@@ -4,9 +4,9 @@ Bootstrap is included via a git submodule. When first checking out this project
 you must run:
 
   git init
-  git submodule add https://github.com/twitter/bootstrap.git src/main/javascript/js/bootstrap
+  git submodule add https://github.com/twitter/bootstrap.git modules/bootstrap
   git submodule init
-  git add src/main/javascript/js/bootstrap
+  git add modules/bootstrap
 
 This will pull in the necessary files.
 
