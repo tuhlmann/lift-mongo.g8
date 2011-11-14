@@ -9,7 +9,7 @@ import util.Props
 
 import com.mongodb.{DBAddress, Mongo}
 
-object Mongo extends Loggable {
+object MongoConfig extends Loggable {
   implicit val formats = DefaultFormats
 
   case class CloudFoundryMongo(name: String, label: String, plan: String, credentials: CloudFoundryMongoCredentials)
