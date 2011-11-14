@@ -1,8 +1,6 @@
 package $package$
 package model
 
-import config.Sitemap
-
 import org.bson.types.ObjectId
 import org.joda.time.DateTime
 

@@ -1,34 +1,5 @@
 <div lift="surround?with=default;at=content">
-  <head>
-    <script type="text/javascript">
-    /* <![CDATA[ */
-    // monitor the password input field and select the yes_password radio.
-    var Signin = {
-      timeoutRtn: 0,
-      monitorPassword: function() {
-        var self = this;
-        if (!\$("#yes_password").attr("checked")) {
-          var pwd = \$("#id_password").val();
-          if (pwd.length > 0) {
-            \$("#yes_password").attr("checked", "checked");
-          }
-          else {
-            self.startMonitor();
-          }
-        }
-      },
-      startMonitor: function() {
-        var self = this;
-        self.timeoutRtn = setTimeout("Signin.monitorPassword()", 1000);
-      }
-    };
-    \$(document).ready(function() {
-      Signin.startMonitor();
-    });
-    /* ]]> */
-    </script>
-  </head>
-  <div id="bootstrap-alerts" lift="BootstrapAlerts?showall=true"></div>
+  <div lift="BootstrapAlerts?showall=true"></div>
   <div class="row">
     <div class="span16">
       <form lift="UserLogin?form=post">
@@ -81,4 +52,31 @@
     </form>
     </div>
   </div>
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  // monitor the password input field and select the yes_password radio.
+  var Signin = {
+    timeoutRtn: 0,
+    monitorPassword: function() {
+      var self = this;
+      if (!\$("#yes_password").attr("checked")) {
+        var pwd = \$("#id_password").val();
+        if (pwd.length > 0) {
+          \$("#yes_password").attr("checked", "checked");
+        }
+        else {
+          self.startMonitor();
+        }
+      }
+    },
+    startMonitor: function() {
+      var self = this;
+      self.timeoutRtn = setTimeout("Signin.monitorPassword()", 1000);
+    }
+  };
+  \$(document).ready(function() {
+    Signin.startMonitor();
+  });
+  /* ]]> */
+  </script>
 </div>

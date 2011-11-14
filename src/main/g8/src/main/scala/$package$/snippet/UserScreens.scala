@@ -1,7 +1,7 @@
 package $package$
 package snippet
 
-import config.Sitemap
+import config.Site
 import lib.Gravatar
 import model._
 
@@ -20,7 +20,7 @@ sealed trait BaseCurrentUserScreen extends BaseScreen {
   object userVar extends ScreenVar(User.currentUser.open_!)
 
   override def localSetup {
-    Referer(Sitemap.account.url)
+    Referer(Site.account.url)
   }
 }
 
@@ -112,7 +112,7 @@ object RegisterScreen extends BaseRegisterScreen with BasePasswordScreen {
     .make
 
   override def localSetup {
-    Referer(Sitemap.home.url)
+    Referer(Site.home.url)
   }
 
   def finish() {

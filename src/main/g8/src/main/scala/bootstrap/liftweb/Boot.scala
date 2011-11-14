@@ -21,11 +21,11 @@ class Boot extends Loggable {
     logger.info("Run Mode: "+Props.mode.toString)
 
     // init mongodb
-    MongoConfig.init()
+    Mongo.init()
 
     // init auth-mongo
     MongoAuth.authUserMeta.default.set(User)
-    MongoAuth.loginTokenAfterUrl.default.set(Sitemap.password.url)
+    MongoAuth.loginTokenAfterUrl.default.set(Site.password.url)
     MongoAuth.siteName.default.set("$name$")
     MongoAuth.systemEmail.default.set("info@") // TODO: Set me
     MongoAuth.systemUsername.default.set("$name$ Staff")
@@ -49,7 +49,7 @@ class Boot extends Loggable {
     LiftRules.htmlProperties.default.set((r: Req) => new Html5Properties(r.userAgent))
 
     // Build SiteMap
-    LiftRules.setSiteMap(Sitemap.siteMap)
+    LiftRules.setSiteMap(Site.siteMap)
 
     // Error handler
     ErrorHandler.init

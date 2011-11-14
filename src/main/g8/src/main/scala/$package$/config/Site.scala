@@ -20,11 +20,11 @@ object MenuGroups {
  * Wrapper for Menu locations
  */
 case class MenuLoc(menu: Menu) {
-  lazy val url: String = menu.loc.link.uriList.mkString("/","/","")
-  lazy val fullUrl: String = S.hostAndPath+url
+  lazy val url: String = S.contextPath+menu.loc.calcDefaultHref
+  lazy val fullUrl: String = S.hostAndPath+menu.loc.calcDefaultHref
 }
 
-object Sitemap extends Locs {
+object Site extends Locs {
   import MenuGroups._
 
   // locations (menu entries)
@@ -35,7 +35,6 @@ object Sitemap extends Locs {
     User.findByUsername _,
     _.username.is
   ) / "user" >> Loc.CalcValue(() => User.currentUser)
-  val profile = MenuLoc(profileParamMenu)
   lazy val profileLoc = profileParamMenu.toLoc
 
   val password = MenuLoc(Menu.i("Password") / "settings" / "password" >> RequireLoggedIn >> SettingsGroup)
@@ -49,7 +48,7 @@ object Sitemap extends Locs {
     register.menu,
     loginToken.menu,
     logout.menu,
-    profile.menu,
+    profileParamMenu,
     account.menu,
     password.menu,
     editProfile.menu,

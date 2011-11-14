@@ -1,7 +1,7 @@
 package $package$
 package snippet
 
-import config.Sitemap
+import config.Site
 import lib.{Gravatar, AppHelpers}
 import model.{User, LoginCredentials}
 
@@ -74,7 +74,7 @@ object ProfileLocUser extends UserSnippet {
     case "profile" => profile
   }
 
-  override protected def user = Sitemap.profileLoc.currentValue
+  override protected def user = Site.profileLoc.currentValue
 
   import java.text.SimpleDateFormat
 
@@ -83,7 +83,7 @@ object ProfileLocUser extends UserSnippet {
   def profile(xhtml: NodeSeq): NodeSeq = serve { user =>
     val editLink: NodeSeq =
       if (User.currentUser.filter(_.id.is == user.id.is).isDefined)
-        <a href={Sitemap.editProfile.url} class="btn info">Edit Your Profile</a>
+        <a href={Site.editProfile.url} class="btn info">Edit Your Profile</a>
       else
         NodeSeq.Empty
 
@@ -132,7 +132,7 @@ class UserLogin extends StatefulSnippet with Loggable {
         case Full(user) if (user.password.isMatch(password)) =>
           User.logUserIn(user, true)
           if (remember) User.createExtSession(user.id.is)
-          S.seeOther(Sitemap.home.url)
+          S.seeOther(Site.home.url)
         case _ => S.error("Invalid credentials.")
       }
     }
@@ -149,16 +149,16 @@ class UserLogin extends StatefulSnippet with Loggable {
           User.sendLoginToken(user)
           User.loginCredentials.remove()
           S.notice("An email has been sent to you with instructions for accessing your account.")
-          S.seeOther(Sitemap.home.url)
+          S.seeOther(Site.home.url)
         }
-        case _ => S.seeOther(Sitemap.register.url)
+        case _ => S.seeOther(Site.register.url)
       }
     }
     else
       S.error("Please enter an email address")
   }) openOr S.error("Please enter an email address")
 
-  private def cancel() = S.seeOther(Sitemap.home.url)
+  private def cancel() = S.seeOther(Site.home.url)
 }
 
 object UserTopbar {
