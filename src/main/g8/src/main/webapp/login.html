@@ -24,9 +24,6 @@
     }
     \$(document).ready(function() {
       Signin.startMonitor();
-      \$("#id_password").keypress(function() {
-        \$("#yes_password").attr("checked", "checked");
-      });
     });
     /* ]]> */
     </script>
@@ -78,7 +75,7 @@
           </div>
       </fieldset>
       <div class="actions">
-        <input type="submit" id="id_submit" class="btn primary" value="Sign In"></input>
+        <input type="submit" id="id_submit" class="btn primary" value="Submit"></input>
         <input type="submit" id="id_cancel" class="btn" value="Cancel"></input>
       </div>
     </form>

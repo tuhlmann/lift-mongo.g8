@@ -27,13 +27,13 @@ seq(lessSettings:_*)
 
 (LessKeys.filter in (Compile, LessKeys.less)) := "*styles.less"
 
-(sourceDirectory in (Compile, LessKeys.less)) <<= (sourceDirectory in Compile)(_ / "less")
-
 seq(jsSettings:_*)
 
 (JsKeys.filter in (Compile, JsKeys.js)) := "*.jsm"
 
 (sourceDirectory in (Compile, JsKeys.js)) <<= (sourceDirectory in Compile)(_ / "javascript")
+
+(resourceManaged in (Compile, JsKeys.js)) <<= (resourceManaged in Compile)(_ / "js")
 
 seq(webSettings :_*)
 
@@ -41,6 +41,6 @@ seq(webSettings :_*)
 (webappResources in Compile) <+= (resourceManaged in Compile)
 
 // make compile depend on less and closure
-(compile in Compile) <<= compile in Compile dependsOn (JsKeys.js in Compile, LessKeys.less in Compile)
+(Keys.compile in Compile) <<= Keys.compile in Compile dependsOn (JsKeys.js in Compile, LessKeys.less in Compile)
 
 checksums := Nil  // Lift snapshot checksums are bad
