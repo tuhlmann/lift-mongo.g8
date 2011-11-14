@@ -32,7 +32,7 @@ the cloud providers and configure it in your props file. See config.MongoConfig 
 
 This app uses sbt 0.11. To build for the first time, run:
 
-    bash$ sbt
+    bash\$ sbt
     > compile
     > container:start
 

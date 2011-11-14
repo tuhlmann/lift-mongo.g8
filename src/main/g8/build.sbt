@@ -6,8 +6,6 @@ version := "$project_version$"
 
 scalaVersion := "$scala_version$"
 
-resolvers += ScalaToolsSnapshots
-
 resolvers += "Liftmodules repo" at "https://repository-liftmodules.forge.cloudbees.com/release"
 
 {
@@ -27,6 +25,8 @@ seq(lessSettings:_*)
 
 (LessKeys.filter in (Compile, LessKeys.less)) := "*styles.less"
 
+(LessKeys.mini in (Compile, LessKeys.less)) := true
+
 seq(jsSettings:_*)
 
 (JsKeys.filter in (Compile, JsKeys.js)) := "*.jsm"
@@ -42,5 +42,3 @@ seq(webSettings :_*)
 
 // make compile depend on less and closure
 (Keys.compile in Compile) <<= Keys.compile in Compile dependsOn (JsKeys.js in Compile, LessKeys.less in Compile)
-
-checksums := Nil  // Lift snapshot checksums are bad

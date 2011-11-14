@@ -30,7 +30,7 @@ class Boot extends Loggable {
     MongoAuth.systemEmail.default.set("info@") // TODO: Set me
     MongoAuth.systemUsername.default.set("$name$ Staff")
 
-    // For S.loggedIn_? and TestCond.loggedIn/Out
+    // For S.loggedIn_? and TestCond.loggedIn/Out builtin snippet
     LiftRules.loggedInTest = Full(() => User.isLoggedIn)
 
     // checks for ExtSession cookie
