@@ -3,16 +3,13 @@ package snippet
 
 import lib.DependencyFactory
 
-import org.scalatest.WordSpec
-import org.scalatest.matchers.ShouldMatchers
-
 import net.liftweb._
 import common._
 import http._
 import util._
 import Helpers._
 
-class HelloWorldSpec extends WordSpec with ShouldMatchers {
+class HelloWorldSpec extends BaseSpec {
   val session = new LiftSession("", randomString(20), Empty)
   val stableTime = now
 
