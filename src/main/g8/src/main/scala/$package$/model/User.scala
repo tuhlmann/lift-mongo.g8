@@ -77,8 +77,8 @@ object User extends User with ProtoAuthUserMeta[User] with Loggable {
   ensureIndex((email.name -> 1), true)
   ensureIndex((username.name -> 1), true)
 
-  def findByEmail(eml: String): Box[User] = find(email.name, eml)
-  def findByUsername(uname: String): Box[User] = find(username.name, uname)
+  def findByEmail(in: String): Box[User] = find(email.name, in)
+  def findByUsername(in: String): Box[User] = find(username.name, in)
 
   def findByStringId(id: String): Box[User] =
     if (ObjectId.isValid(id)) find(new ObjectId(id))
@@ -88,9 +88,7 @@ object User extends User with ProtoAuthUserMeta[User] with Loggable {
   override def onLogOut: List[Box[User] => Unit] = List(
     x => logger.debug("User.onLogOut called."),
     boxedUser => boxedUser.foreach { u =>
-      LoginToken.deleteAllByUserId(u.id.is)
       ExtSession.deleteExtCookie()
-      ExtSession.deleteAllByUserId(u.id.is)
     }
   )
 

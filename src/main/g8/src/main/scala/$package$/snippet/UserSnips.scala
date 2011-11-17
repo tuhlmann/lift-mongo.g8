@@ -60,7 +60,7 @@ sealed trait UserSnippet extends DispatchSnippet with AppHelpers with Loggable {
 
   def title(xhtml: NodeSeq): NodeSeq = serve { user =>
     <lift:head>
-      <title lift="Menu.title">{"BeamStream: %*% - "+user.username.is}</title>
+      <title lift="Menu.title">{"$name$: %*% - "+user.username.is}</title>
     </lift:head>
   }
 }
