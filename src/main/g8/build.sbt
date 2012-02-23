@@ -4,15 +4,15 @@ organization := "$sbt_organization$"
 
 version := "$project_version$"
 
-scalaVersion := "$scala_version$"
+scalaVersion := "2.9.1"
 
 resolvers += "Liftmodules repo" at "https://repository-liftmodules.forge.cloudbees.com/release"
 
 {
-  val liftVersion = "$lift_version$"
+  val liftVersion = "2.4"
   libraryDependencies ++= Seq(
     "net.liftweb" %% "lift-mongodb-record" % liftVersion,
-    "net.liftmodules" %% "mongoauth" % (liftVersion+"-0.2"),
+    "net.liftmodules" %% "mongoauth" % (liftVersion+"-0.3"),
     "ch.qos.logback" % "logback-classic" % "1.0.0",
     "org.scalatest" %% "scalatest" % "1.6.1" % "test",
     "org.mortbay.jetty" % "jetty" % "6.1.22" % "container"
@@ -29,7 +29,7 @@ seq(lessSettings:_*)
 
 seq(jsSettings:_*)
 
-(JsKeys.filter in (Compile, JsKeys.js)) := "*.jsm"
+(JsKeys.includeFilter in (Compile, JsKeys.js)) := "*.jsm"
 
 (sourceDirectory in (Compile, JsKeys.js)) <<= (sourceDirectory in Compile)(_ / "javascript")
 

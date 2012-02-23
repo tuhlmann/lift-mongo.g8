@@ -96,7 +96,7 @@ object ProfileScreen extends BaseCurrentUserScreen {
 
 // this is needed to keep these fields and the password fields in the proper order
 trait BaseRegisterScreen extends BaseScreen {
-  object userVar extends ScreenVar(User.createUserFromCredentials)
+  object userVar extends ScreenVar(User.regUser.is)
 
   addFields(() => userVar.is.registerScreenFields)
 }

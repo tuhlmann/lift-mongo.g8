@@ -9,7 +9,7 @@ as the build tool. It has not been tested with other versions of SBT.
 
 Install giter8 (g8) - [Readme](http://github.com/n8han/giter8#readme) for more information.
 
-Install SBT 0.11.x - [Wiki](https://github.com/harrah/xsbt/wiki) for more information.
+Install SBT 0.11.2 - [Wiki](https://github.com/harrah/xsbt/wiki) for more information.
 
 In a shell, run the following in the parent directory of the new project:
 
