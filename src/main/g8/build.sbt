@@ -27,18 +27,9 @@ seq(lessSettings:_*)
 
 (LessKeys.mini in (Compile, LessKeys.less)) := true
 
-seq(jsSettings:_*)
-
-(JsKeys.includeFilter in (Compile, JsKeys.js)) := "*.jsm"
-
-(sourceDirectory in (Compile, JsKeys.js)) <<= (sourceDirectory in Compile)(_ / "javascript")
-
-(resourceManaged in (Compile, JsKeys.js)) <<= (resourceManaged in Compile)(_ / "js")
+seq(closureSettings:_*)
 
 seq(webSettings :_*)
 
 // add managed resources, where less and closure publish to, to the webapp
 (webappResources in Compile) <+= (resourceManaged in Compile)
-
-// make compile depend on less and closure
-(Keys.compile in Compile) <<= Keys.compile in Compile dependsOn (JsKeys.js in Compile, LessKeys.less in Compile)

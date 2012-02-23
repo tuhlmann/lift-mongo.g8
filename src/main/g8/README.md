@@ -4,17 +4,17 @@ Bootstrap is included via a git submodule. After creating this project
 you must run, in the project root directory:
 
     git init
-    git submodule add https://github.com/twitter/bootstrap.git src/main/javascript/bootstrap
+    git submodule add https://github.com/twitter/bootstrap.git modules/bootstrap
     git submodule init
-    git add src/main/javascript/bootstrap
-    cd src/main/javascript/bootstrap
+    git add modules/bootstrap
+    cd modules/bootstrap
     git co v1.4.0
 
 This will pull in the necessary files. Note this template is built against twitter-bootstrap v1.4.0,
 so you'll need to checkout that tag.
 
 Once the submodule files (modules/bootstrap and .gitmodules) have been committed to the repository,
-other users can clone it in the normal fashion, but you must run:
+other users can clone it in the normal fashion, but they must run:
 
     git submodule update
 

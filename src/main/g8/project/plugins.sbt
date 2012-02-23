@@ -1,7 +1,9 @@
-resolvers += "Untyped Public Repo" at "http://repo.untyped.com"
+resolvers += Resolver.url("sbt-plugin-releases",
+  new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"))(
+    Resolver.ivyStylePatterns)
 
-addSbtPlugin("untyped" % "sbt-js" % "0.1-SNAPSHOT")
+addSbtPlugin("com.eltimn" % "sbt-closure" % "0.1.0")
 
-addSbtPlugin("untyped" % "sbt-less" % "0.2-SNAPSHOT")
+addSbtPlugin("me.lessis" % "less-sbt" % "0.1.9")
 
 libraryDependencies <+= sbtVersion(v => "com.github.siasia" %% "xsbt-web-plugin" % (v+"-0.2.10"))
