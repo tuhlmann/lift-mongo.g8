@@ -1,6 +1,6 @@
 # Twitter Bootstrap
 
-Bootstrap is included directly.
+Bootstrap v2.0.1 is included.
 
 # MongoDB
 

@@ -1,6 +1,6 @@
 package $package$
 
-import org.scalatest.{BeforeAndAfter, Spec}
+import org.scalatest.{BeforeAndAfterAll, WordSpec}
 
 import net.liftweb._
 import mongodb._
@@ -8,12 +8,12 @@ import mongodb._
 import com.mongodb.{Mongo, ServerAddress}
 
 /**
-  * Creates a Mongo instance named after the class. 
+  * Creates a Mongo instance named after the class.
   * Therefore, each Spec class shares the same database.
   * Database is dropped after.
   */
-trait MongoTestKit extends BeforeAndAfter {
-  this: Spec =>
+trait MongoTestKit extends BeforeAndAfterAll {
+  this: WordSpec =>
 
   def dbName = "test_"+this.getClass.getName
     .replace(".", "_")
@@ -26,14 +26,14 @@ trait MongoTestKit extends BeforeAndAfter {
 
   def debug = false
 
-  before {
+  override def beforeAll(configMap: Map[String, Any]) {
     // define the dbs
     dbs foreach { case (id, srvr, name) =>
       MongoDB.defineDb(id, new Mongo(srvr), name)
     }
   }
 
-  after {
+  override def afterAll(configMap: Map[String, Any]) {
     if (!debug) {
       // drop the databases
       dbs foreach { case (id, _, _) =>
@@ -45,4 +45,3 @@ trait MongoTestKit extends BeforeAndAfter {
     MongoDB.close
   }
 }
-

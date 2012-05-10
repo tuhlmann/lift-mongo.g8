@@ -185,3 +185,20 @@ object User extends User with ProtoAuthUserMeta[User] with Loggable {
 }
 
 case class LoginCredentials(val email: String, val isRememberMe: Boolean = false)
+
+object SystemUser {
+  private val username = "$name;format="norm"$"
+  private val email = "help@localhost" // TODO: set me
+
+  lazy val user: User = User.find("username", username) openOr {
+    User.createRecord
+      .name("$name$")
+      .username(username)
+      .email(email)
+      .locale("en_US")
+      .timezone("America/Chicago")
+      .verified(true)
+      .password("abc123", true) // TODO: set me
+      .save
+  }
+}

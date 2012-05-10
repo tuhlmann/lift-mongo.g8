@@ -1,14 +1,18 @@
 package bootstrap.liftweb
 
+import scala.xml.{Null, UnprefixedAttribute}
+
 import net.liftweb._
 import common._
 import http._
 import util._
 import util.Helpers._
 
-import $package$.config._
-import $package$.lib.Gravatar
-import $package$.model.User
+import $package$._
+import config._
+import lib.Gravatar
+import model.{SystemUser, User}
+import snippet.Notices
 
 import net.liftmodules.mongoauth.MongoAuth
 
@@ -27,8 +31,8 @@ class Boot extends Loggable {
     MongoAuth.authUserMeta.default.set(User)
     MongoAuth.loginTokenAfterUrl.default.set(Site.password.url)
     MongoAuth.siteName.default.set("$name$")
-    MongoAuth.systemEmail.default.set("info@") // TODO: Set me
-    MongoAuth.systemUsername.default.set("$name$ Staff")
+    MongoAuth.systemEmail.default.set(SystemUser.user.email.is)
+    MongoAuth.systemUsername.default.set(SystemUser.user.name.is)
 
     // For S.loggedIn_? and TestCond.loggedIn/Out builtin snippet
     LiftRules.loggedInTest = Full(() => User.isLoggedIn)
@@ -62,13 +66,16 @@ class Boot extends Loggable {
 
     // Show the spinny image when an Ajax call starts
     LiftRules.ajaxStart =
-      Full(() => LiftRules.jsArtifacts.show("/img/spinner").cmd)
+      Full(() => LiftRules.jsArtifacts.show("ajax-spinner").cmd)
 
     // Make the spinny image go away when it ends
     LiftRules.ajaxEnd =
-      Full(() => LiftRules.jsArtifacts.hide("/img/spinner").cmd)
+      Full(() => LiftRules.jsArtifacts.hide("ajax-spinner").cmd)
 
     // Force the request to be UTF-8
     LiftRules.early.append(_.setCharacterEncoding("UTF-8"))
+
+    // Use custom code for notices
+    Notices.init()
   }
 }

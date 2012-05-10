@@ -29,6 +29,8 @@ seq(lessSettings:_*)
 
 seq(closureSettings:_*)
 
+(ClosureKeys.prettyPrint in (Compile, ClosureKeys.closure)) := false
+
 seq(webSettings :_*)
 
 // add managed resources, where less and closure publish to, to the webapp
