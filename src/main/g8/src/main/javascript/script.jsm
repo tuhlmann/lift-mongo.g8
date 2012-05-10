@@ -1,8 +1,8 @@
 # bootstrap
-../../../modules/bootstrap/js/bootstrap-alerts.js
-../../../modules/bootstrap/js/bootstrap-dropdown.js
-../../../modules/bootstrap/js/bootstrap-modal.js
-../../../modules/bootstrap/js/bootstrap-scrollspy.js
-../../../modules/bootstrap/js/bootstrap-tabs.js
-../../../modules/bootstrap/js/bootstrap-twipsy.js
-../../../modules/bootstrap/js/bootstrap-popover.js
+bootstrap/bootstrap-alerts.js
+bootstrap/bootstrap-dropdown.js
+bootstrap/bootstrap-modal.js
+bootstrap/bootstrap-scrollspy.js
+bootstrap/bootstrap-tabs.js
+bootstrap/bootstrap-twipsy.js
+bootstrap/bootstrap-popover.js
